@@ -7,7 +7,6 @@ import com.mirellageri.tareas.data.Task
 
 class DatabaseManager(context : Context) : SQLiteOpenHelper(context, DATABASE_NAME,null,DATABASE_VERSION){
     override fun onCreate(db: SQLiteDatabase) {
-        db.execSQL("PRAGMA foreign_keys = ON;")
         db.execSQL(Task.SQL_CREATE_TABLE)
     }
 

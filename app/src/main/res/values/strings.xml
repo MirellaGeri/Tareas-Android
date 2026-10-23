@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Tareas</string>
+    <string name="title_message_delete">Delete Task</string>
+    <string name="question_message_delete">Are you sure to delete this Task?</string>
+    <string name="positive_button_delete">Delete</string>
+    <string name="cancel_button_delete">Cancel</string>
+    <string name="save_task">Save</string>
+    <string name="title_message_create">New Task</string>
+    <string name="title_message_edit">Edit Task</string>
+    <string name="question_hint_dialog">What to do…</string>
+    <string name="warning_task_input">Please enter a task</string>
 </resources>

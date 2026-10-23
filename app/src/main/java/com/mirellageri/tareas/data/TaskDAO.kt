@@ -27,11 +27,17 @@ class TaskDAO(val context : Context) {
         values.put(Task.TABLE_NAME_DONE,task.done)
         return values
     }
-
+    fun save(task : Task){
+        if (task.id == -1){
+            insert(task)
+        }else{
+            update(task)
+        }
+    }
     fun insert(task: Task){
         //Obtener la data del repositorio y escribi rel mode
         open()
-        //crear una nueva mao de valores, donde el nombre de las columnas son la llave
+        //crear una nueva map de valores, donde el nombre de las columnas son la llave
         val values = getContentValue(task)
         try {
             //Insertar la nueva fila, devuelve el Id o primary key de una fila
@@ -51,7 +57,7 @@ class TaskDAO(val context : Context) {
         val values = getContentValue(task)
         try {
             //Update y devuelve el numero de filas afectadas
-            val updatedRows = db.update(Task.TABLE_NAME,null,"${Task.TABLE_NAME_ID} = ${task.id}", null)
+            val updatedRows = db.update(Task.TABLE_NAME,values,"${Task.TABLE_NAME_ID} = ${task.id}", null)
             Log.i("DATABASE", "$updatedRows rows updated in table ${Task.TABLE_NAME}")
         }catch (e : Exception){
             Log.e("DATABASE",e.localizedMessage,e)
@@ -109,7 +115,7 @@ class TaskDAO(val context : Context) {
                 null,          // The values for the WHERE clause
                 null,                   // don't group the rows
                 null,                   // don't filter by row groups
-                null               // The sort order
+                "${Task.TABLE_NAME_DONE} ASC"               // The sort order
             )
             while (cursor.moveToNext()) {
                 val task = cursorToEntity(cursor)

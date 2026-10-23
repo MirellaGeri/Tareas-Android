@@ -2,8 +2,8 @@ package com.mirellageri.tareas.data
 
 data class Task(
     val id: Int,
-    val title:String,
-    val done: Boolean = false
+    var title:String,
+    var done: Boolean = false
 ){
     companion object{
         //Definir el nombre constantes de la tabla en SQL y sus datos
